@@ -1,0 +1,40 @@
+{
+  "name": "mypod",
+  "version": "1.0.0",
+  "description": "Express API server template for production",
+  "private": false,
+  "keywords": [
+    "nodejs",
+    "express",
+    "template"
+  ],
+  "author": "Kunmyon Choi <dilly97@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dilly97/mypod"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node dist/bundle.js",
+    "dev": "NODE_ENV=development nodemon --watch src src/index.js",
+    "dev:build": "WEBPACK_ENV=development webpack -w",
+    "build": "WEBPACK_ENV=production webpack"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-request-id": "^1.4.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.0"
+  }
+}
