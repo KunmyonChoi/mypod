@@ -2,7 +2,7 @@
 ### Click Send Request
 
 ###
-POST http://127.0.0.1:8080/post?url=주소 HTTP/1.1
+GET http://127.0.0.1:8080/hello HTTP/1.1
 content-type: application/json
 
 {
@@ -12,10 +12,3 @@ content-type: application/json
     }, 
     "hobby": ["sports", "coding"]
 }
-
-
-###
-POST http://127.0.0.1:8080/post?url=주소 HTTP/1.1
-content-type: application/x-www-form-urlencoded
-
-%7B%0A%20%20%20%20%22info%22%3A%20%7B%20%0A%20%20%20%20%20%20%20%20%22name%22%3A%20%22andy%22%2C%20%0A%20%20%20%20%20%20%20%20%22age%22%3A%2033%20%0A%20%20%20%20%7D%2C%20%0A%20%20%20%20%22hobby%22%3A%20%5B%22sports%22%2C%20%22coding%22%5D%0A%7D%0A

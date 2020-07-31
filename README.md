@@ -1,2 +1,2 @@
-# mypod
-Express API server template for production
+# Quick Info
+Production quality Express API server template.

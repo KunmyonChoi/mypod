@@ -11,6 +11,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var app = express()
 
+app.port = process.env.API_PORT || 8080
+
 app.use(reqId())
 app.use(morgan('short'))
 
@@ -18,10 +20,10 @@ app.use(morgan('short'))
 app.use(bodyParser.json())
 
 // Content-Type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false})) 
+app.use(bodyParser.urlencoded({ extended: false}))
 
 app.use('/', helloRouter)
 
-app.listen(8080, () => {
-    console.log('start api at 8080')
+app.listen(app.port, () => {
+    console.log(`start api at ${app.port}`)
 })
