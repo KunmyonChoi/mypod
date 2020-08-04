@@ -1,8 +1,9 @@
-const express = require('express')
-var router = express.Router()
+const express = require('express');
+
+const router = express.Router();
 
 router.get('/hello', (req, res) => {
-    res.send('world');
-})
+  res.send('world');
+});
 
-module.exports = router
+module.exports = router;

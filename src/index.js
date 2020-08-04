@@ -2,11 +2,12 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const reqId = require('express-request-id');
+const log = require('debug')('app');
 
 const helloRouter = require('./routes/hello');
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log('Looks like we are in development mode!');
+  log('Looks like we are in development mode!');
 }
 
 const app = express();
@@ -25,5 +26,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', helloRouter);
 
 app.listen(app.port, () => {
-  console.log(`start api at ${app.port}`);
+  log(`start api at ${app.port}`);
 });
