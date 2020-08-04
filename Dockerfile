@@ -6,7 +6,9 @@ LABEL authors="Kunmyon Choi" desc="My Sample nodejs app"
 # node process doesn't get kill signal, so we use tini init to prevent zombies.
 RUN apk add --no-cache tini
 
-WORKDIR /usr/src/app
+RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
 
 # Also copy package-lock.json to prevent conflict
 COPY package*.json ./
