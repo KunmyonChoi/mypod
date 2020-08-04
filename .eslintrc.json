@@ -9,6 +9,7 @@
     "parserOptions": {
         "ecmaVersion": 11
     },
+    "ignorePatterns": [".vscode/", "node_modules/"],
     "rules": {
         "no-console": 2
     }
