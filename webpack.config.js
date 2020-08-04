@@ -20,12 +20,12 @@ const config = {
 				exclude: /node_modules/,
 				use: ['babel-loader']
 			},
-			{
-				enforce: 'pre',
-				test: /\.js$/,
-				loader: 'eslint-loader',
-				exclude: /(node_modules)/
-			}
+			// {
+			// 	enforce: 'pre',
+			// 	test: /\.js$/,
+			// 	loader: 'eslint-loader',
+			// 	exclude: /(node_modules)/
+			// }
 		]
 	},
 	// excluding nodejs dependencies from the output
