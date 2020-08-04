@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypod
+  labels:
+    tier: backend
+spec:
+  selector:
+    matchLabels:
+      app: mypod
+  template:
+    metadata:
+      labels:
+        app: mypod
+        tier: backend
+    spec:
+      containers:
+      - name: mypod
+        image: docker.io/dilly97/mypod:v1.0-alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
