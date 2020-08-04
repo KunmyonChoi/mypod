@@ -11,11 +11,14 @@ WORKDIR /usr/src/app
 # Also copy package-lock.json to prevent conflict
 COPY package*.json ./
 
+# Run process with non-root user
+USER node
+
 # Use npm ci to install production dependency fast
 RUN npm ci --only=production
 
 # Only copy compiled bundle for production
-COPY dist ./dist
+COPY --chown=node:node dist ./dist
 
 EXPOSE 8080
 
