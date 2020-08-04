@@ -11,6 +11,5 @@
     },
     "ignorePatterns": [".vscode/", "node_modules/"],
     "rules": {
-        "no-console": 2
     }
 }
