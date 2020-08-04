@@ -19,7 +19,9 @@
     "start": "NODE_ENV=production node dist/bundle.js",
     "dev": "NODE_ENV=development nodemon --watch src src/index.js",
     "dev:build": "WEBPACK_ENV=development webpack -w",
-    "build": "WEBPACK_ENV=production webpack"
+    "build": "WEBPACK_ENV=production webpack",
+    "test": "eslint --ext .js src",
+    "lint": "eslint --ext .js src"
   },
   "husky": {
     "hooks": {
@@ -37,6 +39,7 @@
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "eslint": "^7.6.0",
     "husky": "^4.2.5",
     "nodemon": "^2.0.4",
     "webpack": "^4.44.1",
