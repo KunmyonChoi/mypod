@@ -20,8 +20,8 @@
     "dev": "NODE_ENV=development nodemon --watch src src/index.js",
     "dev:build": "WEBPACK_ENV=development webpack -w",
     "build": "WEBPACK_ENV=production webpack",
-    "test": "eslint --ext .js src",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint --ext .js src",
+    "fix": "eslint --fix --ext .js src"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -33,9 +33,15 @@
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "eslint": "^7.6.0",
+    "eslint-config-airbnb": "^18.2.0",
     "eslint-loader": "^4.0.2",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.5",
     "nodemon": "^2.0.4",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",

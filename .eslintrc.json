@@ -1,13 +1,15 @@
 {
+    "parser": "babel-eslint",
     "env": {
         "node": true,
         "commonjs": true,
         "es2020": true
     },
-    "extends": "eslint:recommended",
+    "extends": "airbnb",
     "parserOptions": {
         "ecmaVersion": 11
     },
     "rules": {
+        "no-console": 2
     }
 }
