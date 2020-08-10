@@ -8,8 +8,10 @@ const config = {
   context: path.resolve(__dirname, 'src'),
   // SPA: single entry, MPA: multiple entries
   entry: {
-    // ISSUE: Add babel-polyfill dev dependency to fix 'regeneratorRuntime is not defined' error.
-    app: ['babel-polyfill', './index.js'],
+    app: [
+      'babel-polyfill', // ISSUE: Add babel-polyfill dev dependency to fix 'regeneratorRuntime is not defined' error.
+      './index.js',
+    ],
   },
   // enable default plugins for the environment
   mode: process.env.WEBPACK_ENV,
@@ -21,7 +23,10 @@ const config = {
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: [
+          'babel-loader',
+          'eslint-loader',
+        ],
       },
     ],
   },
