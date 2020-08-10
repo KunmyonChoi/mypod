@@ -7,7 +7,10 @@ const config = {
   // To use relative path on entry
   context: path.resolve(__dirname, 'src'),
   // SPA: single entry, MPA: multiple entries
-  entry: './index.js',
+  entry: {
+    // ISSUE: Add babel-polyfill dev dependency to fix 'regeneratorRuntime is not defined' error.
+    app: ['babel-polyfill', './index.js'],
+  },
   // enable default plugins for the environment
   mode: process.env.WEBPACK_ENV,
   // generate source map for debugging

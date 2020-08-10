@@ -16,8 +16,8 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=production node dist/bundle.js",
-    "dev": "NODE_ENV=development nodemon --watch src src/index.js",
+    "start": "NODE_ENV=production DEBUG=app node dist/bundle.js",
+    "dev": "NODE_ENV=development DEBUG=app nodemon --watch src src/index.js",
     "dev:build": "WEBPACK_ENV=development webpack -w",
     "build": "WEBPACK_ENV=production webpack",
     "lint": "eslint --ext .js src",
@@ -28,7 +28,8 @@
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "express-request-id": "^1.4.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-loader": "^4.0.2",
