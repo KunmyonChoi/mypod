@@ -18,8 +18,22 @@ Production quality Express API server template.
 
 ## Docker
 - Build
-  - `docker build -t dilly97/mypod:v1.0-alpine .` 
+  - `docker build -t dilly97/mypod:v1.0-alpine .`
+- Push
+  - `docker push dilly97/mypod:v1.0-alpine`
 - Execute
   - `docker run -it -p 8080:8080 dilly97/mypod:v1.0-alpine`
 
+## Kubernetes
+- Deploy
+  - `kubectl apply -f deployment.yaml`
+- Restart
+  - `kubectl -n default rollout restart deployment mypod`
+- Delete
+  - `kubectl delete -f deployment.yaml`
 
+## Trouble shooting
+- Cann't pull container image from kubernetes while deploy service
+  - check if docker hub repo is set to private
+- How to pull private docker container registry
+  - https://kubernetes.io/ko/docs/tasks/configure-pod-container/pull-image-private-registry/
