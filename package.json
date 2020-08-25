@@ -21,13 +21,15 @@
     "dev:build": "WEBPACK_ENV=development webpack -w",
     "build": "WEBPACK_ENV=production webpack",
     "lint": "eslint --ext .js src",
-    "fix": "eslint --fix --ext .js src"
+    "fix": "eslint --fix --ext .js src",
+    "test": "node --version"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "express-request-id": "^1.4.1",
+    "express-validator": "^6.6.1",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.0"
   },

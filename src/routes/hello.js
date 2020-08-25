@@ -1,6 +1,8 @@
 const express = require('express');
+const { check } = require('express-validator');
 const fetch = require('node-fetch');
 const EventEmitter = require('events');
+const { validate } = require('../validator');
 
 const callbackEvent = new EventEmitter();
 
@@ -28,7 +30,11 @@ router.get('/sync-long-job', async (req, res) => {
 });
 
 // Example code: Simulate device api for long running job
-router.get('/async-job', (req, res) => {
+router.get('/long-job-with-callback', [
+  check('callbackPath', 'should be a string like \'callback\'').isString(),
+],
+validate,
+(req, res) => {
   res.json({ message: `job-started: ${req.id}`, code: 0 });
 
   // Simulate long running job
@@ -39,6 +45,7 @@ router.get('/async-job', (req, res) => {
 
 // Example code: Server side response api that device calls when job completed
 const callbackPath = 'callback';
+
 router.get(`/${callbackPath}`, (req, res) => {
   res.send('ok');
   // fire job complete event
@@ -52,7 +59,8 @@ router.get('/sync-callback-job', async (req, res) => {
 
   // request long running job
   try {
-    fetch(`http://${targetAddr}:${targetPort}/async-job?callbackPath=${callbackPath}`, { method: 'GET', headers: { 'x-request-id': req.id } });
+    fetch(`http://${targetAddr}:${targetPort}/long-job-with-callback?callbackPath=${callbackPath}`, { method: 'GET', headers: { 'x-request-id': req.id } })
+      .catch((err) => { throw err; });
   } catch (err) {
     res.json({ code: -1, error: err });
   }
