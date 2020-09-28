@@ -1,5 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
+const asyncHandler = require('express-async-handler')
 const fetch = require('node-fetch');
 const EventEmitter = require('events');
 const { validate } = require('../validator');
@@ -10,6 +11,60 @@ const router = express.Router();
 
 const targetAddr = '127.0.0.1';
 const targetPort = 8080;
+
+class CustomFetchError extends Error {
+  constructor(status, ...params) {
+    super(...params);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, CustomFetchError);
+    }
+
+    this.status = status;
+  }
+}
+
+async function fetchFunc(url, method) {
+  return fetch(url, { method })
+    .then(async (r) => {
+      const j = await r.json();
+      if (r.status < 200 || r.status >= 300) return new CustomFetchError(r.status, j.message);
+      return j;
+    })
+    .catch((e) => new CustomFetchError(500, e.message));
+}
+
+router.get('/error', (req, res) => {
+  res.status(400).json({ code: 'INVALID_PARAM', message: 'parameter error' });
+});
+
+router.get('/success', (req, res) => {
+  res.status(200).json({ id: 1, name: 'cam1' });
+});
+
+router.get('/test_service_down', async (req, res) => {
+  const ret = await fetchFunc('http://127.0.0.1:800/error', 'GET');
+
+  if (ret instanceof Error) return res.status(ret.status).json({ message: ret.message });
+
+  return res.status(200).json(ret);
+});
+
+router.get('/test_response_error', async (req, res) => {
+  const ret = await fetchFunc('http://127.0.0.1:8080/error', 'GET');
+
+  if (ret instanceof Error) return res.status(ret.status).json({ message: ret.message });
+
+  return res.status(200).json(ret);
+});
+
+router.get('/test_response_success', async (req, res) => {
+  const ret = await fetchFunc('http://127.0.0.1:8080/success', 'GET');
+
+  if (ret instanceof Error) return res.status(ret.status).json({ message: ret.message });
+
+  return res.status(200).json(ret);
+});
 
 // Example code: long running task
 router.get('/long-job', (req, res) => {
